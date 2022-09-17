@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, shrink-to-fit=no">
+    <meta name="description" content="Suha - Multipurpose Ecommerce Mobile HTML Template">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#100DD1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- The above tags *must* come first in the head, any other head content must come *after* these tags -->
+    <!-- Title -->
+    <title>Suha - Multipurpose Ecommerce Mobile HTML Template</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" href="img/icons/icon-72x72.png">
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="img/icons/icon-96x96.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="img/icons/icon-167x167.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/icons/icon-180x180.png">
+    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/brands.min.css">
+    <link rel="stylesheet" href="css/solid.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/nice-select.css">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="manifest.json">
+  </head>
+  <body>
+    <!-- Preloader-->
+    <div class="preloader" id="preloader">
+      <div class="spinner-grow text-secondary" role="status">
+        <div class="sr-only"></div>
+      </div>
+    </div>
+    <!-- Header Area-->
+    <div class="header-area" id="headerArea">
+      <div class="container h-100 d-flex align-items-center justify-content-between rtl-flex-d-row-r">
+        <!-- Back Button-->
+        <div class="back-button me-2"><a href="home.html"><i class="fa-solid fa-arrow-left-long"></i></a></div>
+        <!-- Page Title-->
+        <div class="page-heading">
+          <h6 class="mb-0">Product Catagory</h6>
+        </div>
+        <!-- Filter Option-->
+        <div class="filter-option ms-2" data-bs-toggle="offcanvas" data-bs-target="#suhaFilterOffcanvas" aria-controls="suhaFilterOffcanvas"><i class="fa-solid fa-sliders"></i></div>
+      </div>
+    </div>
+
+   {% comment %} Filter Django Tag will bere  {% endcomment %}
+
+   {%include 'filters.html' %}
+
+    <div class="page-content-wrapper">
+      <!-- Catagory Banner-->
+      <div class="pt-3">
+        <div class="container">
+          <div class="catagory-single-img" style="background-image: url('img/bg-img/5.jpg')"></div>
+        </div>
+      </div>
+      <!-- Product Catagories-->
+      <div class="product-catagories-wrapper py-3">
+        <div class="container">
+          <div class="section-heading rtl-text-right">
+            <h6>Sub Category</h6>
+          </div>
+          <div class="product-catagory-wrap">
+            <div class="row g-2 rtl-flex-d-row-r">
+              <!-- Catagory Card -->
+              <div class="col-3">
+                <div class="card catagory-card">
+                  <div class="card-body px-2"><a href="sub-catagory.html"><img src="img/core-img/woman-clothes.png" alt=""><span>Women's Fashion</span></a></div>
+                </div>
+              </div>
+              <!-- Catagory Card -->
+              <div class="col-3">
+                <div class="card catagory-card">
+                  <div class="card-body px-2"><a href="sub-catagory.html"><img src="img/core-img/grocery.png" alt=""><span>Groceries &amp; Pets</span></a></div>
+                </div>
+              </div>
+              <!-- Catagory Card -->
+              <div class="col-3">
+                <div class="card catagory-card">
+                  <div class="card-body px-2"><a href="sub-catagory.html"><img src="img/core-img/shampoo.png" alt=""><span>Health &amp; Beauty</span></a></div>
+                </div>
+              </div>
+              <!-- Catagory Card -->
+              <div class="col-3">
+                <div class="card catagory-card">
+                  <div class="card-body px-2"><a href="sub-catagory.html"><img src="img/core-img/rowboat.png" alt=""><span>Sports &amp; Outdoors</span></a></div>
+                </div>
+              </div>
+              <!-- Catagory Card -->
+              <div class="col-3">
+                <div class="card catagory-card">
+                  <div class="card-body px-2"><a href="sub-catagory.html"><img src="img/core-img/tv-table.png" alt=""><span>Home Appliance</span></a></div>
+                </div>
+              </div>
+              <!-- Catagory Card -->
+              <div class="col-3">
+                <div class="card catagory-card">
+                  <div class="card-body px-2"><a href="sub-catagory.html"><img src="img/core-img/beach.png" alt=""><span>Tour &amp; Travels</span></a></div>
+                </div>
+              </div>
+              <!-- Catagory Card -->
+              <div class="col-3">
+                <div class="card catagory-card">
+                  <div class="card-body px-2"><a href="sub-catagory.html"><img src="img/core-img/baby-products.png" alt=""><span>Mother &amp; Baby</span></a></div>
+                </div>
+              </div>
+              <!-- Catagory Card -->
+              <div class="col-3">
+                <div class="card catagory-card active">
+                  <div class="card-body px-2"><a href="sub-catagory.html"><img src="img/core-img/price-tag.png" alt=""><span>Clearance Sale</span></a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Top Products-->
+      <div class="top-products-area pb-3">
+        <div class="container">
+          <div class="section-heading rtl-text-right">
+            <h6>Products</h6>
+          </div>
+          
+          {% for product in products %}
+          <div class="selection-panel bg-white mb-3 py-3">
+          <div class="col-12">
+            <div class="horizontal-product-card">
+              <div class="d-flex align-items-center">
+                {%for image in product.product_image.all %}
+                {%if image.is_feature %}
+
+                <div class="product-thumbnail-side">
+                  <!-- Thumbnail --><a class="product-thumbnail shadow-sm d-block" href="{{product.get_absolute_url}}"><img src="{{image.image.url}}" alt=""></a>
+                </div>
+                {%endif%}
+                {%endfor%}
+
+                <div class="product-description">
+                  <!-- Wishlist  --><a class="wishlist-btn" href="#"><i class="fa-solid fa-heart"></i></a>
+                  <!-- Product Title --><a class="product-title d-block" href="{{product.get_absolute_url}}">{{product.title}}</a>
+                  <!-- Price -->
+                  <p class="sale-price"><i class="fa-solid fa-dollar-sign"></i>Rs.{{product.discount_price}}<span>
+                    {% if product.discount_price %}
+                    Rs.{{product.regular_price}}</span></p>
+                    {%else%}
+                    {%endif%}
+                  <!-- Rating -->
+                  <div class="product-rating"><i class="fa-solid fa-star"></i>4.82 <span class="ms-1">(125 review)</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+          {%endfor%}
+        
+        </div>
+      </div>
+    </div>
+    <!-- Internet Connection Status-->
+    <div class="internet-connection-status" id="internetStatus"></div>
+    <!-- Footer Nav-->
+    <div class="footer-nav-area" id="footerNav">
+      <div class="suha-footer-nav">
+        <ul class="h-100 d-flex align-items-center justify-content-between ps-0 d-flex rtl-flex-d-row-r">
+          <li><a href="home.html"><i class="fa-solid fa-house"></i>Home</a></li>
+          <li><a href="message.html"><i class="fa-solid fa-comment-dots"></i>Chat</a></li>
+          <li><a href="cart.html"><i class="fa-solid fa-bag-shopping"></i>Basket</a></li>
+          <li><a href="settings.html"><i class="fa-solid fa-gear"></i>Settings</a></li>
+          <li><a href="pages.html"><i class="fa-solid fa-heart"></i>Pages</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- All JavaScript Files-->
+  
+  </body>
+</html>
+
+{%endblock%}
+

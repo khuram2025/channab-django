@@ -1,0 +1,374 @@
+
+{% extends 'base.html' %}
+{% load embed_video_tags %}
+{% load social_share %}
+
+{% load static %}
+
+{%block content %}
+
+
+  <body>
+    <!-- Preloader-->
+    <div class="preloader" id="preloader">
+      <div class="spinner-grow text-secondary" role="status">
+        <div class="sr-only"></div>
+      </div>
+    </div>
+    <!-- Header Area-->
+    <div class="header-area" id="headerArea">
+      <div class="container h-100 d-flex align-items-center justify-content-between rtl-flex-d-row-r">
+        <!-- Back Button-->
+        <div class="back-button me-2"><a href="{% url 'store:all_products' %}"><i class="fa-solid fa-arrow-left-long"></i></a></div>
+        <!-- Page Title-->
+        <div class="page-heading">
+          <h6 class="mb-0">Product Details</h6>
+        </div>
+        <!-- Navbar Toggler-->
+        <div class="suha-navbar-toggler ms-2" data-bs-toggle="offcanvas" data-bs-target="#suhaOffcanvas" aria-controls="suhaOffcanvas">
+          <div><span></span><span></span><span></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="offcanvas offcanvas-start suha-offcanvas-wrap" tabindex="-1" id="suhaOffcanvas" aria-labelledby="suhaOffcanvasLabel">
+      <!-- Close button-->
+      <button class="btn-close btn-close-white" type="button" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      <!-- Offcanvas body-->
+      <div class="offcanvas-body">
+        <!-- Sidenav Profile-->
+        <div class="sidenav-profile">
+          <div class="user-profile"><img src="img/bg-img/9.jpg" alt=""></div>
+          <div class="user-info">
+            <h5 class="user-name mb-1 text-white">Suha Sarah</h5>
+            <p class="available-balance text-white">Available points <span class="counter">499</span></p>
+          </div>
+        </div>
+        <!-- Sidenav Nav-->
+        <ul class="sidenav-nav ps-0">
+          <li><a href="profile.html"><i class="fa-solid fa-user"></i>My Profile</a></li>
+          <li><a href="notifications.html"><i class="fa-solid fa-bell lni-tada-effect"></i>Notifications<span class="ms-1 badge badge-warning">3</span></a></li>
+          <li class="suha-dropdown-menu"><a href="#"><i class="fa-solid fa-store"></i>Shop Pages</a>
+            <ul>
+              <li><a href="shop-grid.html">Shop Grid</a></li>
+              <li><a href="shop-list.html">Shop List</a></li>
+              <li><a href="single-product.html">Product Details</a></li>
+              <li><a href="featured-products.html">Featured Products</a></li>
+              <li><a href="flash-sale.html">Flash Sale</a></li>
+            </ul>
+          </li>
+          <li><a href="pages.html"><i class="fa-solid fa-file-code"></i>All Pages</a></li>
+          <li class="suha-dropdown-menu"><a href="wishlist-grid.html"><i class="fa-solid fa-heart"></i>My Wishlist</a>
+            <ul>
+              <li><a href="wishlist-grid.html">Wishlist Grid</a></li>
+              <li><a href="wishlist-list.html">Wishlist List</a></li>
+            </ul>
+          </li>
+          <li><a href="settings.html"><i class="fa-solid fa-sliders"></i>Settings</a></li>
+          <li><a href="intro.html"><i class="fa-solid fa-toggle-off"></i>Sign Out</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="page-content-wrapper">
+      <div class="product-slide-wrapper">
+        <!-- Product Slides-->
+        {%for image in product.product_image.all %}
+        {% if image.is_feature %}
+        <div class="product-slides owl-carousel">
+          <!-- Single Hero Slide-->
+          <div class="single-product-slide" style="background-image: url('{{image.image.url}}')"></div>
+          {%else%}
+          <!-- Single Hero Slide-->
+          <div class="single-product-slide" style="background-image: url('{{image.image.url}}')"></div>
+          <!-- Single Hero Slide-->
+          <div class="single-product-slide" style="background-image: url('{{image.image.url}})"></div>
+        </div>
+        
+        {%endif%}
+        {%endfor%}
+        <!-- Video Button--><a class="video-btn shadow-sm" id="singleProductVideoBtn" href="https://www.youtube.com/watch?v=lFGvqvPh5jI"><i class="fa-solid fa-play"></i></a>
+      </div>
+      <div class="product-description pb-3">
+        <!-- Product Title & Meta Data-->
+        <div class="product-title-meta-data bg-white mb-3 py-3">
+          <div class="container d-flex justify-content-between rtl-flex-d-row-r">
+            <div class="p-title-price">
+              <h5 class="mb-1">{{product.title}}</h5>
+              
+              
+              <p class="sale-price mb-0 lh-1">Rs.{{product.discount_price}}<span>{{product.regul}}</span></p>
+            </div>
+            
+            <div class="p-wishlist-share"><a href="wishlist-grid.html"><i class="fa-solid fa-heart"></i></a></div>
+          </div>
+          <!-- Ratings-->
+          <div class="product-ratings">
+            <div class="container d-flex align-items-center justify-content-between rtl-flex-d-row-r">
+              <div class="ratings"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><span class="ps-1">3 ratings</span></div>
+              <div class="total-result-of-ratings"><span>5.0</span><span>Very Good                                </span></div>
+            </div>
+          </div>
+        </div>
+        <!-- Flash Sale Panel-->
+       
+        <!-- Selection Panel-->
+        <div class="selection-panel bg-white mb-3 py-3">
+          <div class="container d-flex align-items-center justify-content-between">
+            <!-- Choose Color-->
+            <!--Create product specification table-->
+            <div class="product-specification-table">
+              <h6>Specifications</h6>
+              <table class="table table-borderless">
+                <tbody>
+                  <tr>
+                    <td class="font-weight-bold">Location</td>
+                    <td>{{product.city}}</td>
+                  </tr>
+                  {% for value in  product.product_spec.all %}
+                  <tr>
+                    
+                    <td class="font-weight-bold">{{value.specification}}</td>
+                    <td>{{value.value}}</td>
+                   
+                  </tr>
+                  {%endfor%}
+                  <tr>
+                    <td class="font-weight-bold">Product Width</td>
+                    <td>{{product.product_width}}</td>
+                  </tr>
+                  <tr>
+                    <td class="font-weight-bold">Product Height</td>
+                    <td>{{product.product_height}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            
+            </div>
+            <!-- Choose Size-->
+            
+          </div>
+        </div>
+
+        <!-- Add To Cart-->
+        <div class="selection-panel bg-white mb-3 py-3">
+          <div class="container d-flex align-items-center justify-content-between">
+            <!-- Choose Color-->
+            <!--Create product specification table-->
+            <div class="product-specification-table">
+              <h6>Available in other Stores</h6>
+              <hr style="width:100%" >
+              <div class="col-12">
+                    <div class="horizontal-product-card">
+                      <div class="d-flex align-items-center">
+                        <div class="product-thumbnail-side">
+                          <!-- Thumbnail --><a class="product-thumbnail shadow-sm d-block" href="single-product.html"><img src="img/product/17.png" alt=""></a>
+                        </div>
+                        <div class="product-description">
+                          <!-- Wishlist  --><a class="wishlist-btn" href="#"><i class="fa-solid fa-heart"></i></a>
+                          <!-- Product Title --><a class="product-title d-block" href="single-product.html">Meow Mix Cat Food</a>
+                          <!-- Price -->
+                          <p class="sale-price"><i class="fa-solid fa-dollar-sign"></i>$11.49<span>$13</span></p>
+                          <!-- Rating -->
+                          <div class="product-rating"><i class="fa-solid fa-star"></i>4.78 <span class="ms-1">(7 review)</span></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+        
+        
+            <!-- Product Specification-->
+        <div class="p-specification bg-white mb-3 py-3">
+          <div class="container">
+            <h6>Details</h6>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+
+            {% post_to_facebook object_or_url "<p style='color: green;'>facebook</p>" %}
+          
+          </div>
+        </div>
+        
+       
+        <!-- Product Video -->
+         <!-- Related Products Slides-->
+         <div class="related-product-wrapper bg-white py-3 mb-3">
+          <div class="container d-flex align-items-center justify-content-between">
+           {%video product.video '400x240' %}
+           
+          </div>
+        </div>
+        
+      
+        <div class="pb-3"></div>
+        <div class="related-product-wrapper bg-white py-3 mb-3">
+          <div class="container">
+            <div class="section-heading d-flex align-items-center justify-content-between rtl-flex-d-row-r">
+              <h6>Related Products</h6><a class="btn p-0" href="shop-grid.html">View All</a>
+            </div>
+            <div class="related-product-slide owl-carousel">
+              <div class="card product-card bg-gray shadow-none">
+                <div class="card-body">
+                  <!-- Badge--><span class="badge rounded-pill badge-warning">Sale</span>
+                  <!-- Wishlist Button--><a class="wishlist-btn" href="#"><i class="fa-solid fa-heart">                       </i></a>
+                  <!-- Thumbnail --><a class="product-thumbnail d-block" href="single-product.html"><img class="mb-2" src="img/product/11.png" alt="">
+                    <!-- Offer Countdown Timer: Please use event time this format: YYYY/MM/DD hh:mm:ss -->
+                    <ul class="offer-countdown-timer d-flex align-items-center shadow-sm" data-countdown="2023/12/31 23:59:59">
+                      <li><span class="days">0</span>d</li>
+                      <li><span class="hours">0</span>h</li>
+                      <li><span class="minutes">0</span>m</li>
+                      <li><span class="seconds">0</span>s</li>
+                    </ul></a>
+                  <!-- Product Title --><a class="product-title" href="single-product.html">Beach Cap</a>
+                  <!-- Product Price -->
+                  <p class="sale-price">$13<span>$42</span></p>
+                  <!-- Rating -->
+                  <div class="product-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                  <!-- Add to Cart --><a class="btn btn-success btn-sm" href="#"><i class="fa-solid fa-plus"></i></a>
+                </div>
+              </div>
+              <div class="card product-card bg-gray shadow-none">
+                <div class="card-body">
+                  <!-- Badge--><span class="badge rounded-pill badge-success">New</span>
+                  <!-- Wishlist Button--><a class="wishlist-btn" href="#"><i class="fa-solid fa-heart">                       </i></a>
+                  <!-- Thumbnail --><a class="product-thumbnail d-block" href="single-product.html"><img class="mb-2" src="img/product/5.png" alt=""></a>
+                  <!-- Product Title --><a class="product-title" href="single-product.html">Wooden Sofa</a>
+                  <!-- Product Price -->
+                  <p class="sale-price">$74<span>$99</span></p>
+                  <!-- Rating -->
+                  <div class="product-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                  <!-- Add to Cart --><a class="btn btn-success btn-sm" href="#"><i class="fa-solid fa-plus"></i></a>
+                </div>
+              </div>
+              <div class="card product-card bg-gray shadow-none">
+                <div class="card-body">
+                  <!-- Badge--><span class="badge rounded-pill badge-success">Sale</span>
+                  <!-- Wishlist Button--><a class="wishlist-btn" href="#"><i class="fa-solid fa-heart">                       </i></a>
+                  <!-- Thumbnail --><a class="product-thumbnail d-block" href="single-product.html"><img class="mb-2" src="img/product/6.png" alt=""></a>
+                  <!-- Product Title --><a class="product-title" href="single-product.html">Roof Lamp</a>
+                  <!-- Product Price -->
+                  <p class="sale-price">$99<span>$113</span></p>
+                  <!-- Rating -->
+                  <div class="product-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                  <!-- Add to Cart --><a class="btn btn-success btn-sm" href="#"><i class="fa-solid fa-plus"></i></a>
+                </div>
+              </div>
+              <div class="card product-card bg-gray shadow-none">
+                <div class="card-body">
+                  <!-- Badge--><span class="badge rounded-pill badge-danger">-18%</span>
+                  <!-- Wishlist Button--><a class="wishlist-btn" href="#"><i class="fa-solid fa-heart">                       </i></a>
+                  <!-- Thumbnail --><a class="product-thumbnail d-block" href="single-product.html"><img class="mb-2" src="img/product/9.png" alt="">
+                    <!-- Offer Countdown Timer: Please use event time this format: YYYY/MM/DD hh:mm:ss -->
+                    <ul class="offer-countdown-timer d-flex align-items-center shadow-sm" data-countdown="2022/12/23 00:21:29">
+                      <li><span class="days">0</span>d</li>
+                      <li><span class="hours">0</span>h</li>
+                      <li><span class="minutes">0</span>m</li>
+                      <li><span class="seconds">0</span>s</li>
+                    </ul></a>
+                  <!-- Product Title --><a class="product-title" href="single-product.html">Sneaker Shoes</a>
+                  <!-- Product Price -->
+                  <p class="sale-price">$87<span>$92</span></p>
+                  <!-- Rating -->
+                  <div class="product-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                  <!-- Add to Cart --><a class="btn btn-success btn-sm" href="#"><i class="fa-solid fa-plus"></i></a>
+                </div>
+              </div>
+              <div class="card product-card bg-gray shadow-none">
+                <div class="card-body">
+                  <!-- Badge--><span class="badge rounded-pill badge-danger">-11%</span>
+                  <!-- Wishlist Button--><a class="wishlist-btn" href="#"><i class="fa-solid fa-heart"></i></a>
+                  <!-- Thumbnail --><a class="product-thumbnail d-block" href="single-product.html"><img class="mb-2" src="img/product/8.png" alt=""></a>
+                  <!-- Product Title --><a class="product-title" href="single-product.html">Wooden Chair</a>
+                  <!-- Product Price -->
+                  <p class="sale-price">$21<span>$25</span></p>
+                  <!-- Rating -->
+                  <div class="product-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                  <!-- Add to Cart --><a class="btn btn-success btn-sm" href="#"><i class="fa-solid fa-plus"></i></a>
+                </div>
+              </div>
+              <div class="card product-card bg-gray shadow-none">
+                <div class="card-body">
+                  <!-- Badge--><span class="badge rounded-pill badge-warning">On Sale</span>
+                  <!-- Wishlist Button--><a class="wishlist-btn" href="#"><i class="fa-solid fa-heart"></i></a>
+                  <!-- Thumbnail --><a class="product-thumbnail d-block" href="single-product.html"><img class="mb-2" src="img/product/4.png" alt=""></a>
+                  <!-- Product Title --><a class="product-title" href="single-product.html">Polo Shirts</a>
+                  <!-- Product Price -->
+                  <p class="sale-price">$38<span>$41</span></p>
+                  <!-- Rating -->
+                  <div class="product-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                  <!-- Add to Cart --><a class="btn btn-success btn-sm" href="#"><i class="fa-solid fa-plus"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+       
+        <!-- Rating & Review Wrapper -->
+        <div class="rating-and-review-wrapper bg-white py-3 mb-3 dir-rtl">
+          <div class="container">
+            <h6>Ratings &amp; Reviews</h6>
+            <div class="rating-review-content">
+              <ul class="ps-0">
+                <!-- Single User Review -->
+                <li class="single-user-review d-flex">
+                  <div class="user-thumbnail"><img src="img/bg-img/7.jpg" alt=""></div>
+                  <div class="rating-comment">
+                    <div class="rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="comment mb-0">Very good product. It's just amazing!</p><span class="name-date">Designing World 12 Dec 2022</span><a class="review-image mt-2 border rounded" href="img/product/3.png"><img class="rounded-3" src="img/product/3.png" alt=""></a>
+                  </div>
+                </li>
+                <!-- Single User Review -->
+                <li class="single-user-review d-flex">
+                  <div class="user-thumbnail"><img src="img/bg-img/8.jpg" alt=""></div>
+                  <div class="rating-comment">
+                    <div class="rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="comment mb-0">Very excellent product. Love it.</p><span class="name-date">Designing World 8 Dec 2022</span><a class="review-image mt-2 border rounded" href="img/product/4.png"><img class="rounded-3" src="img/product/4.png" alt=""></a><a class="review-image mt-2 border rounded" href="img/product/6.png"><img class="rounded-3" src="img/product/6.png" alt=""></a>
+                  </div>
+                </li>
+                <!-- Single User Review -->
+                <li class="single-user-review d-flex">
+                  <div class="user-thumbnail"><img src="img/bg-img/9.jpg" alt=""></div>
+                  <div class="rating-comment">
+                    <div class="rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="comment mb-0">What a nice product it is. I am looking it's.</p><span class="name-date">Designing World 28 Nov 2022</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- Ratings Submit Form-->
+        <div class="ratings-submit-form bg-white py-3 dir-rtl">
+          <div class="container">
+            <h6>Submit A Review</h6>
+            <form action="#" method="">
+              <div class="stars mb-3">
+                <input class="star-1" type="radio" name="star" id="star1">
+                <label class="star-1" for="star1"></label>
+                <input class="star-2" type="radio" name="star" id="star2">
+                <label class="star-2" for="star2"></label>
+                <input class="star-3" type="radio" name="star" id="star3">
+                <label class="star-3" for="star3"></label>
+                <input class="star-4" type="radio" name="star" id="star4">
+                <label class="star-4" for="star4"></label>
+                <input class="star-5" type="radio" name="star" id="star5">
+                <label class="star-5" for="star5"></label><span></span>
+              </div>
+              <textarea class="form-control mb-3" id="comments" name="comment" cols="30" rows="10" data-max-length="200" placeholder="Write your review..."></textarea>
+              <button class="btn btn-primary" type="submit">Save Review</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Internet Connection Status-->
+    <div class="internet-connection-status" id="internetStatus"></div>
+    <!-- Footer Nav-->
+    {%include 'footer.html' %}
+    <!-- All JavaScript Files-->
+
+  </body>
+
+  {%endblock%}
+
